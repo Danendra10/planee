@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Vendor;
+use App\Models\EventOrganizer;
 
 class GeneralController extends Controller
 {
@@ -75,6 +76,15 @@ class GeneralController extends Controller
             'email' => Auth::user()->email,
             'levels' => 'user'
         ])->first();
+
+        EventOrganizer::create([
+            "name" => $current_user->name,
+            "address" => $req->address,
+            "phone" => $req->phone,
+            "email" => $current_user->email,
+            "website" => $req->website,
+            "NPWP" => $req->NPWP,
+        ]);
 
         $current_user->update([
             "levels" => "event-organizer"

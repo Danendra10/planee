@@ -15,19 +15,10 @@
                 <th>No</th>
                 <th>Services Name</th>
                 <th>Services Description</th>
-                <th>Duration</th>
                 <th>Price</th>
             </tr>
         </thead>
         <tbody>
-
-            {{-- <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-            </tr> --}}
             @foreach ($vendor_data as $data)
                 <?php
                 // dd($data);
@@ -38,8 +29,6 @@
                     <td>Dummy Num</td>
                     <td>{{ $data->services }}</td>
                     <td>{{ $data->description }}</td>
-                    <td>{{ $data->duration }}</td>
-                    {{-- <td><? 'Rp. ' . $lower_price . ' - ' . $upper_price; ?></td> --}}
                     <td>Rp. {{ $data->lower_price }} - {{ $data->upper_price }}</td>
                 </tr>
             @endforeach
