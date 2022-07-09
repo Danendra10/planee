@@ -20,7 +20,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
                     <h2 class="heading-section">Planee</h2>
-                    @if ($notification = Session::get('fails'))
+                    @if ($notification = Session::get('error'))
                         <div class="alert alert-danger mt-3" role="alert">
                             <strong>{{ $notification }}</strong>
                         </div>
@@ -49,7 +49,7 @@
                                 <input type="text" class="form-control rounded-left" placeholder="Email" name="email" required>
                             </div>
                             <div class="form-group d-flex">
-                                <input type="password" class="form-control rounded-left" placeholder="Password" name="password-" 
+                                <input type="password" class="form-control rounded-left" placeholder="Password" name="password" required>
                                     required>
                             </div>
                             {{-- <select class="form-select" aria-label="Default select example" name="access_right">
