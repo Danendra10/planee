@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('event_organizers', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
             $table->string('name');
             $table->string('phone');
             $table->string('address');

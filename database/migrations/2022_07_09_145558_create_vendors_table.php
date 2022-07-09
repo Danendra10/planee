@@ -11,15 +11,10 @@ return new class extends Migration
      *
      * @return void
      */
-
-     /**
-      * Email akan digunakan sebagai logic untuk sorting data vendornya
-      */
     public function up()
     {
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
             $table->string('name');
             $table->string('phone');
             $table->string('address');
@@ -37,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendor');
+        Schema::dropIfExists('vendors');
     }
 };

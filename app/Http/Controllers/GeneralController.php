@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+
+
 use App\Models\User;
 use App\Models\Vendor;
 use App\Models\EventOrganizer;
@@ -16,16 +21,21 @@ class GeneralController extends Controller
     {
         $user = User::where('email', $req->email)->first();
         if (Auth::attempt($req->only('email', 'password'))) {
-            if ($user->levels == 'admin') {
-                return redirect('/admin/dashboard');
-            } else if($user->levels == 'user') {
-                return redirect('/user/dashboard');
-            } else if($user->levels == 'vendor') {
-                return redirect('/vendor/dashboard');
-            } else if($user->levels == 'event-organizer') {
-                return redirect('/event-organizer/dashboard');
-            } else {
-                dd('error accuired, contact our admin for more information');
+            if($user->register_status){
+                if ($user->levels == 'admin') {
+                    return redirect('/admin/dashboard');
+                } else if($user->levels == 'user') {
+                    return redirect('/user/dashboard');
+                } else if($user->levels == 'vendor') {
+                    return redirect('/vendor/dashboard');
+                } else if($user->levels == 'event-organizer') {
+                    return redirect('/event-organizer/dashboard');
+                } else {
+                    dd('error accuired, contact our admin for more information');
+                }
+            }
+            else{
+                return redirect('/login')->with('error', 'You need to verify your account!');    
             }
         }
         else {
@@ -36,13 +46,51 @@ class GeneralController extends Controller
     //------Registration------
     //=========================
     public function register(Request $req){
-        $user = new User;
-        $user->name = $req->name;
-        $user->email = $req->email;
-        $user->password = bcrypt($req->password);
-        $user->levels = 'user';
-        $user->save();
-        return redirect('/login')->with('success', 'Berhasil mendaftar!');
+        $input['email'] = $req->email;
+        $input['password'] = $req->password;
+        $email_target = $req->email;
+
+        // User register rules
+        $rules = array('email' => 'required|email', 'password' => 'required|min:8');
+
+        $validator = Validator::make($input, $rules);
+        // dd($validator);
+
+        if($validator->fails())
+            return redirect('/register')->with('error', 'Email atau Password sudah ada!');
+        else{
+            User::create([
+                'name' => $req->name,
+                'email' => $req->email,
+                'password' => Hash::make($req->password),
+                'levels' => 'user',
+            ]);
+
+            $user_target = User::where('email', $email_target)->first();
+
+            $data = array(
+                'id' => $user_target->id,
+            );
+
+            Mail::send('email.verifikasi', $data, function ($message) use ($email_target) {
+                $message->to($email_target, $email_target)
+                    ->subject('VERIFIKASI AKUN PLANEE');
+                
+            });
+
+            //menambahkan logic untuk kirim email verif
+            return redirect('/login')->with('success', 'Berhasil mendaftar!');
+        }
+    }
+
+    public function verifikasiAkun($id)
+    {
+        $sukses = User::where(['id' => $id])->update(['register_status' => '1']);
+
+        if ($sukses)
+            return redirect('/login')->with('success', 'Akun anda berhasil diverifikasi, silahkan login');
+        else
+            return redirect('/login')->with('failed', 'Akun anda gagal diverifikasi');
     }
 
     //------User to Vendor------

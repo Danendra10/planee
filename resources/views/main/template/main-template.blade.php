@@ -81,7 +81,7 @@
                                         <li class="@yield('active-class-join')"><a href="/user/join">Join Us</a>
                                             <ul class="sub-menu">
                                                 <li><a href="/user/join-vendor">Join Vendor</a></li>
-                                                <li><a href="/user/join-eo">Join Event Organizer</a></li>
+                                                <li><a href="/user/join-event-organizer">Join Event Organizer</a></li>
                                             </ul>
                                         </li>
                                     @elseif(Auth::user()->levels == 'vendor')

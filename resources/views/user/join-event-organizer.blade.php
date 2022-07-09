@@ -18,14 +18,14 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6 text-center mb-5">
+                <div class="col-md-6 text-center">
                     <h2 class="heading-section">Planee</h2>
                     @if ($notification = Session::get('success-register'))
                         <div class="alert alert-success alert-block">
                             <strong>{{ $notification }}</strong>
                         </div>
                     @endif
-                    @if ($notification = Session::get('error'))
+                    @if ($notification = Session::get('failed'))
                         <div class="alert alert-danger alert-block">
                             <strong>{{ $notification }}</strong>
                         </div>
@@ -34,20 +34,25 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-5">
-                    <div class="login-wrap p-4 p-md-5">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="fa fa-user-o"></span>
-                        </div>
-                        <h3 class="text-center mb-4">Have an account?</h3>
-                        <form action="{{ url('/login') }}" class="login-form" method="POST">
+                    <div class="login-wrap p-4 p-md-5">                        
+                        <h3 class="text-center mb-4">Be an Event Organizer</h3>
+                        <form action="{{ url('/user/join-event-organizer') }}" class="login-form" method="POST">
                             @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control rounded-left" placeholder="Email" name="email" value="{{ old('email') }}"
+                                <input type="text" class="form-control rounded-left" placeholder="Address" name="address"
                                     required>
                             </div>
                             <div class="form-group d-flex">
-                                <input type="password" class="form-control rounded-left" placeholder="Password"
-                                    name="password" required>
+                                <input type="text" class="form-control rounded-left" placeholder="Phone"
+                                    name="phone" required>
+                            </div>
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control rounded-left" placeholder="Website"
+                                    name="website">
+                            </div>
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control rounded-left" placeholder="NPWP"
+                                    name="NPWP" required>
                             </div>
                             <div class="form-group d-md-flex">
                                 <div class="w-50">

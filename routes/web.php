@@ -36,6 +36,7 @@ Route::get('/register', function () {
 
 Route::post('/register', [GeneralController::class, 'register']);
 
+Route::get('/verifikasi/{id}', [GeneralController::class, 'verifikasiAkun']); 
 
 //Admin routes
 Route::group(['middleware' => ['auth', 'cekLevel:admin']], function () {
@@ -60,6 +61,20 @@ Route::group(['middleware' => ['auth', 'cekLevel:vendor']], function () {
     Route::post('/vendor/add-services', [VendorController::class, 'VendorDataInput'])->name('vendor.add-services.store');
 });
 
+//-----Event Organizer routes-----
+//===============================
+Route::group(['middleware' => ['auth', 'cekLevel:event-organizer']], function () {
+    Route::get('/event-organizer/dashboard', function () {
+        return view('main.index');
+    });
+    Route::get('/event-organizer/add-events', function () {
+        return view('event-organizer.add-events');
+    });
+    Route::get('/event-organizer/my-events', [EventOrganizerController::class, 'myEvents']);
+    Route::get('/event-organizer/logout', [AdminController::class, 'logout']);
+    Route::post('/event-organizer/add-events', [EventOrganizerController::class, 'EventDataInput'])->name('event-organizer.add-events.store');
+});
+
 //-----User routes-----
 //=====================
 Route::group(['middleware' => ['auth', 'cekLevel:user']], function () {
@@ -67,8 +82,18 @@ Route::group(['middleware' => ['auth', 'cekLevel:user']], function () {
         return view('main.index');
     });
     Route::get('/user/logout', [AdminController::class, 'logout']);
+
+    //-----User to Vendor routes-----
+    //===============================
     Route::get('/user/join-vendor', function () {
         return view('user.join-vendor');
     });
     Route::post('/user/join-vendor', [GeneralController::class, 'vendorRegistration']);
+
+    //-----User to Event Organizer routes-----
+    //=========================================
+    Route::get('/user/join-event-organizer', function () {
+        return view('user.join-event-organizer');
+    });
+    Route::post('/user/join-event-organizer', [GeneralController::class, 'eventOrganizerRegistration']);
 });
