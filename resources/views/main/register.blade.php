@@ -40,7 +40,7 @@
                             <span class="fa fa-user-o"></span>
                         </div>
                         <h3 class="text-center mb-4">Create your account</h3>
-                        <form action="{{ url('/register') }}" class="login-form text-center" method="POST">
+                        <form action="{{ url('/register') }}" class="login-form text-center" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <input type="text" class="form-control rounded-left" placeholder="Username" name="name" required>
@@ -50,7 +50,10 @@
                             </div>
                             <div class="form-group d-flex">
                                 <input type="password" class="form-control rounded-left" placeholder="Password" name="password" required>
-                                    required>
+                            </div>
+                            <label for="profile_picture">Profile Picture</label>
+                            <div class="form-group" id="profile_picture">
+                                <input type="file" name="profile_picture" accept="image" placeholder="profile_picture" class="form-control-file" required>
                             </div>
                             {{-- <select class="form-select" aria-label="Default select example" name="access_right">
                                 <option selected>Choose Your Role</option>

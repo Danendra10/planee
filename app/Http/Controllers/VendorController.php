@@ -21,7 +21,8 @@ class VendorController extends Controller
             'services' => $request->services,
             'lower_price' => $request->lower_price,
             'upper_price' => $request->upper_price,
-            'description' => $request->description
+            'description' => $request->description,
+            'material' => $request->material,
         ]);
         return redirect('/vendor/add-services')->with('success', 'data has been added, check your services to make sure');
     }
@@ -32,7 +33,32 @@ class VendorController extends Controller
             'levels' => 'vendor'
         ])->first();
         $vendor_data = VendorData::where('email', $vendor->email)->get();
-        // dd($vendor_data);
         return view('vendor.my-services', ['vendor_data' => $vendor_data]);
+    }
+
+    public function editServices($id)
+    {
+        $vendorData = VendorData::find($id);
+        return view('vendor.edit-services', ['vendorData' => $vendorData]);
+    }
+
+    public function editServicesConfirm(Request $request){
+        if(VendorData::where('id', $request->id)->update([
+            'services' => $request->services,
+            'lower_price' => $request->lower_price,
+            'upper_price' => $request->upper_price,
+            'description' => $request->description,
+            'material' => $request->material,
+        ])){
+            return redirect('/vendor/my-services')->with('updateSuccess', 'data has been updated');
+        } else
+            return redirect('/vendor/my-services')->with('updateFailed', 'data has not been updated');
+    }
+
+    public function deleteServices($id){
+        if(VendorData::where('id', $id)->delete()){
+            return redirect('/vendor/my-services')->with('deleteSuccess', 'data has been deleted');
+        } else
+            return redirect('/vendor/my-services')->with('deleteFailed', 'data has not been deleted');
     }
 }

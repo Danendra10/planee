@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('lower_price');
             $table->string('upper_price');
             $table->text('description');
-            $table->text('duration');
+            $table->text('material');
             $table->timestamps();
         });
     }

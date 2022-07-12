@@ -39,24 +39,10 @@
                                     placeholder="Service Price" required>
                             </div>
                             <div class="form-group">
-                                <label for="service_duration">Service Duration</label>
-                                <input type="text" class="form-control" name="service_duration" id="service_duration"
-                                    placeholder="Service Duration" required>
-                            </div>
-                            {{-- <div class="form-group">
-                                <label for="service_image">Service Image</label>
-                                <input type="file" class="form-control" name="service_image" id="service_image"
-                                    placeholder="Service Image">
-                            </div> --}}
-                            {{-- <div class="form-group">
-                            <label for="service_category">Service Category</label>
-                            <select class="form-control" name="service_category" id="service_category">
-                                <option value="">Select Category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                @endforeach
-                            </select>
-                        </div> --}}
+                                <label for="material">Material</label>
+                                <input type="text" class="form-control" name="material" id="material"
+                                    placeholder="Material" required>
+                            </div>   
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary rounded submit p-3 px-5">Submit</button>
                         </div>

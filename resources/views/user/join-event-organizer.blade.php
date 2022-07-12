@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Login</title>
+    <title>Event Organizer Form</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -60,13 +60,10 @@
                                         <input type="checkbox" checked>
                                         <span class="checkmark"></span>
                                     </label> --}}
-                                </div>
-                                <div class="w-50 text-md-right">
-                                    <a href="/register">Create Account?</a>
-                                </div>
+                                </div>                                
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary rounded submit p-3 px-5">Login</button>
+                                <button type="submit" class="btn btn-primary rounded submit p-3 px-5">Submit</button>
                             </div>
                         </form>
                     </div>

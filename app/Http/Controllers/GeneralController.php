@@ -20,6 +20,8 @@ class GeneralController extends Controller
     public function login(Request $req)
     {
         $user = User::where('email', $req->email)->first();
+        $user_data = User::where('email', $req->email)->get();
+        // dd($user_data);
         if (Auth::attempt($req->only('email', 'password'))) {
             if($user->register_status){
                 if ($user->levels == 'admin') {
@@ -51,7 +53,7 @@ class GeneralController extends Controller
         $email_target = $req->email;
 
         // User register rules
-        $rules = array('email' => 'required|email', 'password' => 'required|min:8');
+        $rules = array('email' => 'required|email|unique', 'password' => 'required|min:8');
 
         $validator = Validator::make($input, $rules);
         // dd($validator);
@@ -64,6 +66,7 @@ class GeneralController extends Controller
                 'email' => $req->email,
                 'password' => Hash::make($req->password),
                 'levels' => 'user',
+                'profile_picture' => $req->profile_picture->store('public/profile_picture'),
             ]);
 
             $user_target = User::where('email', $email_target)->first();
@@ -79,7 +82,7 @@ class GeneralController extends Controller
             });
 
             //menambahkan logic untuk kirim email verif
-            return redirect('/login')->with('success', 'Berhasil mendaftar!');
+            return redirect('/login')->with('success', 'Berhasil mendaftar! Mohon cek email anda untuk verifikasi akun!');
         }
     }
 
@@ -114,7 +117,7 @@ class GeneralController extends Controller
             "levels" => "vendor"
         ]);
 
-        return redirect("/login")->with("success", "Berhasil mendaftar!");
+        return redirect("/vendor/dashboard")->with("success", "Berhasil mendaftar!");
     }
 
     //------User to EO------
@@ -138,7 +141,7 @@ class GeneralController extends Controller
             "levels" => "event-organizer"
         ]);
 
-        return redirect("/login")->with("success", "Berhasil mendaftar!");
+        return redirect("/event-organizer/dashboard")->with("success", "Berhasil mendaftar!");
     }
 
     public function logout(Request $req)

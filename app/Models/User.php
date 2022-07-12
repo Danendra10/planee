@@ -23,6 +23,7 @@ class User extends Authenticatable
         'levels',
         'password',
         'register_status',
+        'profile_picture'
     ];
 
     /**

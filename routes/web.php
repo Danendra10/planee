@@ -49,6 +49,8 @@ Route::group(['middleware' => ['auth', 'cekLevel:admin']], function () {
 //-----Vendor routes-----
 //=======================
 Route::group(['middleware' => ['auth', 'cekLevel:vendor']], function () {
+    //----GET routes----
+    //==================
     Route::get('/vendor/dashboard', function () {
         return view('main.index');
     });
@@ -57,8 +59,19 @@ Route::group(['middleware' => ['auth', 'cekLevel:vendor']], function () {
     });
     Route::get('/vendor/my-services', [VendorController::class, 'myServices']);
     Route::get('/vendor/logout', [AdminController::class, 'logout']);
-
+    Route::get('/vendor/my-services/edit/{id}', [VendorController::class, 'editServices']);
+    
+    //----POST routes----
+    //===================
     Route::post('/vendor/add-services', [VendorController::class, 'VendorDataInput'])->name('vendor.add-services.store');
+    
+    //----PATCH request-----
+    //=======================
+    Route::patch('/vendor/my-services/edit/confirm', [VendorController::class, 'editServicesConfirm']);
+
+    //----DELETE request-----
+    //=======================
+    Route::delete('/vendor/my-services/delete/{id}', [VendorController::class, 'deleteServices']);
 });
 
 //-----Event Organizer routes-----
