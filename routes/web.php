@@ -46,6 +46,9 @@ Route::group(['middleware' => ['auth', 'cekLevel:admin']], function () {
     Route::get('/admin/logout', [AdminController::class, 'logout']);
 });
 
+
+
+
 //-----Vendor routes-----
 //=======================
 Route::group(['middleware' => ['auth', 'cekLevel:vendor']], function () {
@@ -74,6 +77,9 @@ Route::group(['middleware' => ['auth', 'cekLevel:vendor']], function () {
     Route::delete('/vendor/my-services/delete/{id}', [VendorController::class, 'deleteServices']);
 });
 
+
+
+
 //-----Event Organizer routes-----
 //===============================
 Route::group(['middleware' => ['auth', 'cekLevel:event-organizer']], function () {
@@ -87,6 +93,9 @@ Route::group(['middleware' => ['auth', 'cekLevel:event-organizer']], function ()
     Route::get('/event-organizer/logout', [AdminController::class, 'logout']);
     Route::post('/event-organizer/add-events', [EventOrganizerController::class, 'EventDataInput'])->name('event-organizer.add-events.store');
 });
+
+
+
 
 //-----User routes-----
 //=====================
@@ -109,4 +118,10 @@ Route::group(['middleware' => ['auth', 'cekLevel:user']], function () {
         return view('user.join-event-organizer');
     });
     Route::post('/user/join-event-organizer', [GeneralController::class, 'eventOrganizerRegistration']);
+
+    //-----Vendor List routes-----
+    //===========================
+    Route::get('/vendor-list', [GeneralController::class, 'vendorList']);
+
+    Route::get('/vendor/services/{id}', [GeneralController::class, 'vendorServices']);
 });

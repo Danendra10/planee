@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Models\Vendor;
 use App\Models\EventOrganizer;
+use App\Models\VendorData;
 
 class GeneralController extends Controller
 {
@@ -53,7 +54,7 @@ class GeneralController extends Controller
         $email_target = $req->email;
 
         // User register rules
-        $rules = array('email' => 'required|email|unique', 'password' => 'required|min:8');
+        $rules = array('email' => 'required|email|unique:users', 'password' => 'required|min:8');
 
         $validator = Validator::make($input, $rules);
         // dd($validator);
@@ -149,5 +150,23 @@ class GeneralController extends Controller
         $req->session()->flush();
         Auth::logout();
         return redirect('/');
+    }
+
+    //Vendor List
+    public function vendorList(){
+        $vendor = VendorData::all();
+        // dd($vendor);
+        if(request('search'))
+            $vendor = VendorData::where('services', 'like', '%' . request('search') . '%')->get();
+
+        return view('user.vendor-list', compact('vendor'));
+    }
+
+    public function vendorServices($id){
+        $vendor = VendorData::where('id', $id)->first();
+        $name = Vendor::where('email', $vendor->email)->first();
+        $vendor_name = $name->name;
+        // dd($vendor_name);
+        return view('user.vendor-services', compact('vendor', 'vendor_name'));
     }
 }

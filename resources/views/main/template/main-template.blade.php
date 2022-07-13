@@ -11,27 +11,52 @@
     <!-- title -->
     <title>@yield('title')</title>
 
-    <!-- favicon -->
-    <link rel="shortcut icon" type="image/png" href="favicon.ico">
-    <!-- google font -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
-    <!-- fontawesome -->
-    <link rel="stylesheet" href="/css/all.min.css">
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <!-- owl carousel -->
-    <link rel="stylesheet" href="/css/owl.carousel.css">
-    <!-- magnific popup -->
-    <link rel="stylesheet" href="/css/magnific-popup.css">
-    <!-- animate css -->
-    <link rel="stylesheet" href="/css/animate.css">
-    <!-- mean menu css -->
-    <link rel="stylesheet" href="/css/meanmenu.min.css">
-    <!-- main style -->
-    <link rel="stylesheet" href="/css/main.css">
-    <!-- responsive -->
-    <link rel="stylesheet" href="/css/responsive.css">
+    @if ('active')
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="/tables/css/style.css">
+
+        <!-- fontawesome -->
+        <link rel="stylesheet" href="/css/all.min.css">
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <!-- owl carousel -->
+        <link rel="stylesheet" href="/css/owl.carousel.css">
+        <!-- magnific popup -->
+        <link rel="stylesheet" href="/css/magnific-popup.css">
+        <!-- animate css -->
+        <link rel="stylesheet" href="/css/animate.css">
+        <!-- mean menu css -->
+        <link rel="stylesheet" href="/css/meanmenu.min.css">
+        <!-- main style -->
+        <link rel="stylesheet" href="/css/main.css">
+        <!-- responsive -->
+        <link rel="stylesheet" href="/css/responsive.css">
+    @else
+        <!-- favicon -->
+        <link rel="shortcut icon" type="image/png" href="favicon.ico">
+        <!-- google font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+        <!-- fontawesome -->
+        <link rel="stylesheet" href="/css/all.min.css">
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <!-- owl carousel -->
+        <link rel="stylesheet" href="/css/owl.carousel.css">
+        <!-- magnific popup -->
+        <link rel="stylesheet" href="/css/magnific-popup.css">
+        <!-- animate css -->
+        <link rel="stylesheet" href="/css/animate.css">
+        <!-- mean menu css -->
+        <link rel="stylesheet" href="/css/meanmenu.min.css">
+        <!-- main style -->
+        <link rel="stylesheet" href="/css/main.css">
+        <!-- responsive -->
+        <link rel="stylesheet" href="/css/responsive.css">
+    @endif
 
 </head>
 
@@ -61,17 +86,17 @@
                         <!-- menu start -->
                         <nav class="main-menu">
                             <ul>
-                                <li class="@yield('active-class-home')"><a href="/">Home</a>
-                                </li>
+                                <!-- Jika sudah login -->
                                 @if (Auth::check())
                                     @if (Auth::user()->levels == 'user')
+                                        <li class="@yield('active-class-home')"><a href="/user/dashboard">Home</a></li>
                                         <li class="@yield('active-class-about')"><a href="/main/about">About</a></li>
                                         <li class="@yield('active-class-news')"><a href="/main/news">News</a>
                                         </li>
                                         <li class="@yield('active-class-contact')"><a href="/main/contact">Contact</a></li>
                                         <li class="@yield('active-class-shop')"><a href="/main/shop">Shop</a>
                                             <ul class="sub-menu">
-                                                <li><a href="/main/shop">Our Vendor</a></li>
+                                                <li><a href="/vendor-list">Our Vendor</a></li>
                                                 <li><a href="/main/checkout">Our Event Organizer</a></li>
                                                 <li><a href="/main/single-product">Our Sponsorship Agency</a>
                                                 </li>
@@ -84,13 +109,16 @@
                                                 <li><a href="/user/join-event-organizer">Join Event Organizer</a></li>
                                             </ul>
                                         </li>
+                                        <!-- Jika Login sebagai vendor -->
                                     @elseif(Auth::user()->levels == 'vendor')
                                         <li class="@yield('active-class-vendor-messages')"><a href="/vendor/messages">Messages</a></li>
                                         <li class="@yield('active-class-add-services')"><a href="/vendor/add-services">Add Services</a>
-                                            <li class="@yield('active-class-my-services')"><a href="/vendor/my-services">My Services</a>
+                                        <li class="@yield('active-class-my-services')"><a href="/vendor/my-services">My Services</a>
                                         </li>
                                     @endif
+                                    <!-- Jika Belum Login -->
                                 @else
+                                    <li class="@yield('active-class-home')"><a href="/">Home</a></li>
                                     <li class="@yield('active-class-about')"><a href="/main/about">About</a></li>
                                     <li class="@yield('active-class-news')"><a href="/main/news">News</a>
                                     </li>
@@ -241,6 +269,26 @@
     <script src="/js/sticker.js"></script>
     <!-- main js -->
     <script src="/js/main.js"></script>
+    <!-- search js -->
+    <script>
+        $(document).ready(function(e) {
+            $('.search-panel .dropdown-menu').find('a').click(function(e) {
+                e.preventDefault();
+                var param = $(this).attr("href").replace("#", "");
+                var concept = $(this).text();
+                $('.search-panel span#search_concept').text(concept);
+                $('.input-group #search_param').val(param);
+            });
+        });
+        var a = document.getElementByTagName('a').item(0);
+        $(a).on('keyup', function(evt) {
+            console.log(evt);
+            if (evt.keycode === 13) {
+
+                alert('search?');
+            }
+        });
+    </script>
 </body>
 
 </html>
