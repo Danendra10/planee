@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Auth;
 
 //Index route
 Route::get('/', function () {
-    return view('main.index');
+    return view('coming-soon');
+    // return view('main.index');
 });
 
 Route::get('/login', function () {
