@@ -17,7 +17,7 @@ current-list-item
                 <div class="hero-text">
                     <div class="hero-text-tablecell">
                         <p class="subtitle">Your Vendor and EO Partner</p>
-                        <h1>"Satu untuk semua"</h1>
+                        <h1>"All in one, One for all"</h1>
                         <div class="hero-btns">
                             {{-- <a href="shop.html" class="boxed-btn">Fruit Collection</a> --}}
                             <a href="contact.html" class="bordered-btn">Contact Us</a>
@@ -31,7 +31,7 @@ current-list-item
 <!-- end hero area -->
 
 <!-- features list section -->
-<div class="list-section pt-80 pb-80">
+{{-- <div class="list-section pt-80 pb-80">
     <div class="container">
 
         <div class="row">
@@ -71,7 +71,7 @@ current-list-item
         </div>
 
     </div>
-</div>
+</div> --}}
 <!-- end features list section -->
 
 <!-- product section -->
@@ -80,8 +80,7 @@ current-list-item
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="section-title">
-                    <h3><span class="orange-text">Our</span> Products</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+                    <h3><span class="orange-text">Our</span> Offer</h3>
                 </div>
             </div>
         </div>
@@ -90,31 +89,31 @@ current-list-item
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+                        <a href="/vendor-list"><img src="/img/clothes.svg" alt=""></a>
                     </div>
-                    <h3>Strawberry</h3>
-                    <p class="product-price"><span>Per Kg</span> 85$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <h3>Our Vendor</h3>
+                    <p class="product-price"><span>Vendor for your clothing <br/> solution</span>  </p>
+                    <a href="/vendor-list" class="cart-btn"><i class="fas fa-search"></i> Click for more</a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
+                        <a href="/coming-soon"><img src="/img/EventOrganizer.svg" alt=""></a>
                     </div>
-                    <h3>Berry</h3>
-                    <p class="product-price"><span>Per Kg</span> 70$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <h3>Our Event Organizer</h3>
+                    <p class="product-price"><span>Vendor for your events <br/> solution</span>  </p>
+                    <a href="/coming-soon" class="cart-btn"><i class="fas fa-search"></i> Click for more</a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
+                        <a href="/coming-soon"><img src="/img/Sponsorship.svg" alt=""></a>
                     </div>
-                    <h3>Lemon</h3>
-                    <p class="product-price"><span>Per Kg</span> 35$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <h3>Our Vendor</h3>
+                    <p class="product-price"><span>Vendor for your clothing <br/> solution</span>  </p>
+                    <a href="/coming-soon" class="cart-btn"><i class="fas fa-search"></i> Click for more</a>
                 </div>
             </div>
         </div>
@@ -123,7 +122,7 @@ current-list-item
 <!-- end product section -->
 
 <!-- cart banner section -->
-<section class="cart-banner pt-100 pb-100">
+{{-- <section class="cart-banner pt-100 pb-100">
     <div class="container">
         <div class="row clearfix">
             <!--Image Column-->
@@ -165,11 +164,11 @@ current-list-item
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- end cart banner section -->
 
 <!-- testimonail-section -->
-<div class="testimonail-section mt-150 mb-150">
+{{-- <div class="testimonail-section mt-150 mb-150">
     <div class="container">
         <div class="row">
             <div class="col-lg-10 offset-lg-1 text-center">
@@ -220,11 +219,11 @@ current-list-item
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- end testimonail-section -->
 
 <!-- advertisement section -->
-<div class="abt-section mb-150">
+{{-- <div class="abt-section mb-150">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12">
@@ -243,21 +242,21 @@ current-list-item
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- end advertisement section -->
 
 <!-- shop banner -->
-<section class="shop-banner">
+{{-- <section class="shop-banner">
     <div class="container">
         <h3>December sale is on! <br> with big <span class="orange-text">Discount...</span></h3>
         <div class="sale-percent"><span>Sale! <br> Upto</span>50% <span>off</span></div>
         <a href="shop.html" class="cart-btn btn-lg">Shop Now</a>
     </div>
-</section>
+</section> --}}
 <!-- end shop banner -->
 
 <!-- latest news -->
-<div class="latest-news pt-150 pb-150">
+{{-- <div class="latest-news pt-150 pb-150">
     <div class="container">
 
         <div class="row">
@@ -325,32 +324,39 @@ current-list-item
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- end latest news -->
 
 <!-- logo carousel -->
 <div class="logo-carousel-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="logo-carousel-inner">
-                    <div class="single-logo-item">
-                        <img src="assets/img/company-logos/1.png" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="assets/img/company-logos/2.png" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="assets/img/company-logos/3.png" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="assets/img/company-logos/4.png" alt="">
-                    </div>
-                    <div class="single-logo-item">
-                        <img src="assets/img/company-logos/5.png" alt="">
-                    </div>
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">
+                    <h3><span class="orange-text">Thank</span> To</h3>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                {{-- <div class="logo-carousel-inner"> --}}
+                    <div class="single-logo-item d-flex justify-content-center">
+                        <img src="/img/its.png" alt="">
+                    </div>
+                    {{-- <div class="single-logo-item">
+                        <img src="/img/company-logos/2.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="/img/company-logos/3.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="/img/company-logos/4.png" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="/img/company-logos/5.png" alt="">
+                    </div> --}}
+                </div>
+            {{-- </div> --}}
         </div>
     </div>
 </div>

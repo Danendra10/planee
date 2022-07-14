@@ -10,6 +10,6 @@
 1. [o]Make user access to every single data in the database of vendor or eo.
 2. [o]Make a page for each services of vendor and eo.
 3. [o]Coming Soon Page
-4. []Change the layout of the page.
-
-    
+4. [0]404 error page
+5. [0]About Page
+6. []Contact Page

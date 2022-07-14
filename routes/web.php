@@ -20,26 +20,42 @@ use Illuminate\Support\Facades\Auth;
 
 //Index route
 Route::get('/', function () {
-    return view('coming-soon');
-    // return view('main.index');
+    // return view('coming-soon');
+    return view('main.index');
 });
 
 Route::get('/login', function () {
     return view('main.login');
 });
 
-Route::post('/login', [GeneralController::class, 'login']);
-Route::get("/logout", [GeneralController::class, "logout"]);
-
 Route::get('/register', function () {
     return view('main.register');
 });
+
+Route::get('/main/about', function () {
+    return view('main.about');
+});
+
+Route::get('/main/contact', function () {
+    return view('main.contact');
+});
+
+Route::get('/404', function () {
+    return view('404');
+});
+Route::post('/login', [GeneralController::class, 'login']);
+Route::get("/logout", [GeneralController::class, "logout"]);
+
 
 Route::post('/register', [GeneralController::class, 'register']);
 
 Route::get('/verifikasi/{id}', [GeneralController::class, 'verifikasiAkun']); 
 
-//Admin routes
+
+
+
+//-----Admin Routes-----
+//======================
 Route::group(['middleware' => ['auth', 'cekLevel:admin']], function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');

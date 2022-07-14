@@ -475,7 +475,7 @@ a.boxed-btn, a.bordered-btn, a.cart-btn {
 }
 
 .breadcrumb-bg {
-  background-image: url(../img/breadcrumb-bg.jpg);
+  background-color: #051922;
 }
 
 .breadcrumb-text p {
@@ -1361,7 +1361,8 @@ a.mobile-show.search-bar-icon:hover {
 
 ----------------------------------------------------------------------------- */
 .hero-bg {
-  background-image: url(../img/hero-bg.jpg);
+  /* background-image: url(../img/hero-bg.jpg); */
+  background-color: #051922;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -2158,12 +2159,12 @@ a.video-play-btn {
 }
 
 .feature-bg:after {
-  background-image: url(../img/feature-bg.jpg);
+  background-image: url(../img/delivery.svg);
   position: absolute;
   right: 0;
   top: 0;
-  width: 40%;
-  height: 100%;
+  width: 43%;
+  height: 87%;
   content: "";
   background-size: cover;
   background-position: center;
