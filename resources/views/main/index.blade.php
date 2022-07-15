@@ -333,7 +333,7 @@ current-list-item
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="section-title">
-                    <h3><span class="orange-text">Thank</span> To</h3>
+                    <h3><span class="orange-text">Thanks</span> To</h3>
                 </div>
             </div>
         </div>

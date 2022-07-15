@@ -14,6 +14,9 @@
 5. [0]About Page
 6. [0]Change the card design
 7. [0]Contact Page
+8. []Add to cart
+9. []Cart
+10. 
 
 
 # Note

@@ -181,7 +181,8 @@ class GeneralController extends Controller
             $input['message'] = $request->message;
             $input['name'] = $request->name;
             $input['phone'] = $request->phone;
-            $email_target = 'planeeidn@gmail.com';
+            $subject = $request->subject;
+            $email_target = $request->email;
 
             // User register rules
             $rules = array('email' => 'required|email', 'message' => 'required');
@@ -199,9 +200,11 @@ class GeneralController extends Controller
                     'phone' => $request->phone,
                 );
 
-                Mail::send('email.contact-admin', $data, function ($message) use ($email_target) {
-                    $message->to($email_target, $email_target)
-                        ->subject('HI!');
+                Mail::send('email.contact-admin', $data, function ($message) use ($email_target, $subject) {
+                    $message->from($email_target);
+                    
+                    $message->to('planeeidn@gmail.com', 'Planee')
+                        ->subject($subject);
                 });
 
                 //menambahkan logic untuk kirim email verif

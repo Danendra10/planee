@@ -14,7 +14,7 @@
 @section('content')
     <section class="dark">
         <div class="container py-4">
-            <h1 class="h1 text-center" id="pageHeaderTitle" style="margin-top: 10%">Vendor List</h1>
+            <h1 class="h1 text-center" id="pageHeaderTitle" style="margin-top: 10%; color: #fff">Vendor List</h1>
 
             @foreach ($vendor as $data)
                 <article class="postcard dark blue">

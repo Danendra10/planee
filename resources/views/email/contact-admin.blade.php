@@ -31,6 +31,7 @@
 <body>
     <p>
         Name: {{$name}}<br>
+        Email: {{$email}}<br>
         Phone: {{$phone}}<br>
         {{ $messages }}
     </p>

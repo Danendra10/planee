@@ -54,7 +54,7 @@ h6, .h6 {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   margin: 0 0 1.25rem 0;
-  color: #145370;
+  color: #000;
 }
 
 h1:last-child, .h1:last-child,
@@ -2788,7 +2788,7 @@ body {
 }
 
 .dark {
-	background: #110f16;
+	background: #07212e;
 }
 
 .light {
