@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('upper_price');
             $table->text('description');
             $table->text('material');
+            $table->string('image');
             $table->timestamps();
         });
     }

@@ -1,18 +1,49 @@
 @extends('main/template/main-template')
 
 @section('title')
-Vendor List
+    Vendor List
 @stop
 
 @section('active-class-shop')
-active
+    active
 @stop
 
 @section('active')
-1
+    1
 @stop
 @section('content')
-    <section class="ftco-section">
+    <section class="dark">
+        <div class="container py-4">
+            <h1 class="h1 text-center" id="pageHeaderTitle" style="margin-top: 10%">Vendor List</h1>
+
+            @foreach ($vendor as $data)
+                <article class="postcard dark blue">
+                    <a class="postcard__img_link" href="#">
+                        @if ($data->image == null)
+                            <img class="postcard__img" src="/img/clothes.svg" alt="">
+                        @else
+                            <img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title" />
+                        @endif
+                    </a>
+                    <div class="postcard__text">
+                        <h1 class="postcard__title blue"><a href="#">{{ $data->services }}</a></h1>
+                        <div class="postcard__subtitle small">
+                                <i class="fas fa-dollar mr-2"></i>Rp. {{$data->lower_price}} - {{$data->upper_price}}
+                        </div>
+                        <div class="postcard__bar"></div>
+                        <div class="postcard__preview-txt">{{ $data->description }}</div>
+                        <ul class="postcard__tagbox">
+                            <li class="tag__item"><i class="fas fa-envelope mr-2"></i><a href="mailto:{{ $data->email }}">Contact</a></li>
+                            <li class="tag__item"><i class="fas fa-info mr-2"></i><a href="/vendor/services/{{ $data->id }}">Information</a></li>
+                            <li class="tag__item"><i class="fas fa-exclamation mr-2"></i><a href="/vendor/report/{{ $data->id }}">Report</a></li>
+                            <li class="tag__item"><i class="fa fa-shopping-cart mr-2"></i><a href="/vendor/cart/{{ $data->id }}">Add to Cart</a></li>
+                        </ul>
+                    </div>
+                </article>
+            @endforeach
+        </div>
+    </section>
+    {{-- <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
@@ -59,5 +90,5 @@ active
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection

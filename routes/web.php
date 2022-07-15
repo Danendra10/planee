@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('main.login');
-});
+})->name('login');
 
 Route::get('/register', function () {
     return view('main.register');
@@ -141,4 +141,11 @@ Route::group(['middleware' => ['auth', 'cekLevel:user']], function () {
     Route::get('/vendor-list', [GeneralController::class, 'vendorList']);
 
     Route::get('/vendor/services/{id}', [GeneralController::class, 'vendorServices']);
+
+    //-----Event Organizer List routes-----
+    //=====================================
+
+    //-----Admin routes-----
+    //======================
+    Route::get('/admin/contact', [GeneralController::class, 'contactAdmin']);
 });

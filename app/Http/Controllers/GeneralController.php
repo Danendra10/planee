@@ -24,31 +24,30 @@ class GeneralController extends Controller
         $user_data = User::where('email', $req->email)->get();
         // dd($user_data);
         if (Auth::attempt($req->only('email', 'password'))) {
-            if($user->register_status){
+            if ($user->register_status) {
                 if ($user->levels == 'admin') {
                     return redirect('/admin/dashboard');
-                } else if($user->levels == 'user') {
+                } else if ($user->levels == 'user') {
                     return redirect('/user/dashboard');
-                } else if($user->levels == 'vendor') {
+                } else if ($user->levels == 'vendor') {
                     return redirect('/vendor/dashboard');
-                } else if($user->levels == 'event-organizer') {
+                } else if ($user->levels == 'event-organizer') {
                     return redirect('/event-organizer/dashboard');
                 } else {
                     dd('error accuired, contact our admin for more information');
                 }
+            } else {
+                return redirect('/login')->with('error', 'You need to verify your account!');
             }
-            else{
-                return redirect('/login')->with('error', 'You need to verify your account!');    
-            }
-        }
-        else {
+        } else {
             return redirect('/login')->with('error', 'Email atau Password salah!');
         }
     }
 
     //------Registration------
     //=========================
-    public function register(Request $req){
+    public function register(Request $req)
+    {
         $input['email'] = $req->email;
         $input['password'] = $req->password;
         $email_target = $req->email;
@@ -59,9 +58,9 @@ class GeneralController extends Controller
         $validator = Validator::make($input, $rules);
         // dd($validator);
 
-        if($validator->fails())
+        if ($validator->fails())
             return redirect('/register')->with('error', 'Email atau Password sudah ada!');
-        else{
+        else {
             User::create([
                 'name' => $req->name,
                 'email' => $req->email,
@@ -79,7 +78,6 @@ class GeneralController extends Controller
             Mail::send('email.verifikasi', $data, function ($message) use ($email_target) {
                 $message->to($email_target, $email_target)
                     ->subject('VERIFIKASI AKUN PLANEE');
-                
             });
 
             //menambahkan logic untuk kirim email verif
@@ -99,7 +97,8 @@ class GeneralController extends Controller
 
     //------User to Vendor------
     //=========================
-    public function vendorRegistration(Request $req){
+    public function vendorRegistration(Request $req)
+    {
         $current_user = User::where([
             'email' => Auth::user()->email,
             'levels' => 'user'
@@ -123,7 +122,8 @@ class GeneralController extends Controller
 
     //------User to EO------
     //======================
-    public function eventOrganizerRegistration(Request $req){
+    public function eventOrganizerRegistration(Request $req)
+    {
         $current_user = User::where([
             'email' => Auth::user()->email,
             'levels' => 'user'
@@ -153,20 +153,64 @@ class GeneralController extends Controller
     }
 
     //Vendor List
-    public function vendorList(){
+    public function vendorList()
+    {
         $vendor = VendorData::all();
         // dd($vendor);
-        if(request('search'))
+        if (request('search'))
             $vendor = VendorData::where('services', 'like', '%' . request('search') . '%')->get();
 
         return view('user.vendor-list', compact('vendor'));
     }
 
-    public function vendorServices($id){
+    public function vendorServices($id)
+    {
         $vendor = VendorData::where('id', $id)->first();
         $name = Vendor::where('email', $vendor->email)->first();
         $vendor_name = $name->name;
         // dd($vendor_name);
         return view('user.vendor-services', compact('vendor', 'vendor_name'));
+    }
+
+    //----Contact Admin----
+    //=====================
+    public function contactAdmin(Request $request)
+    {
+        if (Auth::check()) {
+            $input['email'] = $request->email;
+            $input['message'] = $request->message;
+            $input['name'] = $request->name;
+            $input['phone'] = $request->phone;
+            $email_target = 'planeeidn@gmail.com';
+
+            // User register rules
+            $rules = array('email' => 'required|email', 'message' => 'required');
+
+            $validator = Validator::make($input, $rules);
+            // dd($validator);
+
+            if ($validator->fails())
+                return redirect('/contact')->with('error', 'Email atau Password salah!');
+            else {
+                $data = array(
+                    'email' => $request->email,
+                    'messages' => $request->message,
+                    'name' => $request->name,
+                    'phone' => $request->phone,
+                );
+
+                Mail::send('email.contact-admin', $data, function ($message) use ($email_target) {
+                    $message->to($email_target, $email_target)
+                        ->subject('HI!');
+                });
+
+                //menambahkan logic untuk kirim email verif
+                return redirect('/main/contact')->with('success', 'Berhasil mengirim pesan!');
+            }
+        }
+        else{
+            dd('masuk?');
+            return view('/login')->with("error", "Anda harus login terlebih dahulu");
+        }
     }
 }

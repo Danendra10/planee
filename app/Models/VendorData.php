@@ -10,6 +10,6 @@ class VendorData extends Model
     use HasFactory;
 
     protected $fillable = [
-        'email', 'services', 'lower_price', 'upper_price', 'description', 'duration', 'material'
+        'email', 'services', 'lower_price', 'upper_price', 'description', 'duration', 'material', 'image'
     ];
 }

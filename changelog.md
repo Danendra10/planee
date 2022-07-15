@@ -12,4 +12,9 @@
 3. [o]Coming Soon Page
 4. [0]404 error page
 5. [0]About Page
-6. []Contact Page
+6. [0]Change the card design
+7. [0]Contact Page
+
+
+# Note
+1. []Bug on sendong email contact
